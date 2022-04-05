@@ -4,12 +4,12 @@ spring:
       enabled: true
 
   datasource:
-    url: jdbc:h2:./users
+    url: jdbc:h2:./users;AUTO_SERVER=TRUE
     username: sa
     #generate-unique-name: false
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
       dialect: org.hibernate.dialect.H2Dialect
 
 server:
