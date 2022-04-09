@@ -2,7 +2,6 @@ package com.social.service.persistence.jpa.mongo.service;
 
 import com.mongodb.client.result.DeleteResult;
 import com.social.service.persistence.jpa.mongo.document.FollowerDocument;
-import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.PageRequest;
@@ -23,8 +22,8 @@ public class FollowerMongoService {
 
     private final MongoOperations mongoOperations;
 
-    public void createFollower(String userName, String followingUserName){
-        FollowerDocument  followerDocument = FollowerDocument.builder()
+    public void createFollower(String userName, String followingUserName) {
+        FollowerDocument followerDocument = FollowerDocument.builder()
                 .follower(userName)
                 .following(followingUserName)
                 .createdDate(DateTime.now().toDate())
@@ -32,7 +31,7 @@ public class FollowerMongoService {
         mongoOperations.save(followerDocument);
     }
 
-    public long deleteFollowing(String userName, String followingUserName){
+    public long deleteFollowing(String userName, String followingUserName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("follower").is(userName))
                 .addCriteria(Criteria.where("following").is(followingUserName));
@@ -40,12 +39,12 @@ public class FollowerMongoService {
         return deleteResult.getDeletedCount();
     }
 
-    public List<String> getFollowingIds(String userName, Integer page, Integer size){
+    public List<String> getFollowingIds(String userName, Integer page, Integer size) {
         Query query = new Query();
         Pageable pageable = PageRequest.of(page, size);
         query.addCriteria(Criteria.where("following").is(userName)).with(pageable);
         List<FollowerDocument> followerDocuments = mongoOperations.find(query, FollowerDocument.class);
-        if (CollectionUtils.isEmpty(followerDocuments)){
+        if (CollectionUtils.isEmpty(followerDocuments)) {
             return Collections.emptyList();
         }
         return followerDocuments.stream()
@@ -53,12 +52,12 @@ public class FollowerMongoService {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getFollowerIds(String userName, Integer page, Integer size){
+    public List<String> getFollowerIds(String userName, Integer page, Integer size) {
         Query query = new Query();
         Pageable pageable = PageRequest.of(page, size);
         query.addCriteria(Criteria.where("follower").is(userName)).with(pageable);
         List<FollowerDocument> followerDocuments = mongoOperations.find(query, FollowerDocument.class);
-        if (CollectionUtils.isEmpty(followerDocuments)){
+        if (CollectionUtils.isEmpty(followerDocuments)) {
             return Collections.emptyList();
         }
         return followerDocuments.stream()

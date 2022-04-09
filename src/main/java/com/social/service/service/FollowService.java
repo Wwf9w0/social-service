@@ -1,7 +1,5 @@
 package com.social.service.service;
 
-import com.social.service.client.UserServiceClient;
-import com.social.service.persistence.jpa.UserProfileEntity;
 import com.social.service.persistence.jpa.dto.UserDto;
 import com.social.service.persistence.jpa.elasticsearch.ElasticSearchService;
 import com.social.service.persistence.jpa.mongo.service.FollowerMongoService;
@@ -9,7 +7,6 @@ import com.social.service.persistence.jpa.mongo.service.NotifierMongoService;
 import com.social.service.persistence.jpa.response.UserDetail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,9 +19,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class FollowService {
 
-    private final UserServiceClient serviceClient;
     private final UserService userService;
-    private FollowerMongoService followerMongoService;
+    private final FollowerMongoService followerMongoService;
     private final ElasticSearchService elasticSearchService;
     private final NotifierMongoService notifierMongoService;
 

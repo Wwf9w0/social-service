@@ -4,7 +4,6 @@ import com.social.service.converter.UserConverter;
 import com.social.service.persistence.jpa.dto.UserDto;
 import com.social.service.persistence.jpa.mongo.document.UserDocument;
 import com.social.service.persistence.jpa.mongo.repository.UserRepository;
-import com.social.service.persistence.jpa.response.UserDetail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -22,9 +21,9 @@ public class UserMongoService {
     // private final PostService postService;
 
 
-    public UserDto getUser(String userName){
+    public UserDto getUser(String userName) {
         UserDocument userDocument = userRepository.findByUserName(userName);
-        if (Objects.isNull(userDocument)){
+        if (Objects.isNull(userDocument)) {
             throw new RuntimeException();
         }
 
@@ -35,6 +34,7 @@ public class UserMongoService {
         userDto.setProfilePhoto(profilePhoto);
         return userDto;
     }
+
     public void assertUserIsExisted(String userName) {
         if (Objects.isNull(userRepository.findByUserName(userName))) {
             throw new RuntimeException();
