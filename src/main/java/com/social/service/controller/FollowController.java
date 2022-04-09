@@ -14,7 +14,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 
 @RestController
-@RequiredArgsConstructor-
+@RequiredArgsConstructor
 @RequestMapping("/follow")
 public class FollowController {
 
@@ -24,7 +24,7 @@ public class FollowController {
     public ResponseEntity<Void> followUser(@RequestHeader(AUTHORIZATION) String token,
                                            @PathVariable String userName){
         followService.follow(token, userName);
-        return ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
