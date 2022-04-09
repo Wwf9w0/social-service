@@ -1,4 +1,4 @@
-package com.social.service.persistence.jpa.repository;
+package com.social.service.persistence.jpa.mongo.repository;
 
 import com.social.service.persistence.jpa.mongo.document.UserDocument;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -1,7 +1,7 @@
 package com.social.service.persistence.jpa.mongo.service;
 
 import com.social.service.persistence.jpa.mongo.document.UserDocument;
-import com.social.service.persistence.jpa.repository.UserRepository;
+import com.social.service.persistence.jpa.mongo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.mongodb.core.MongoOperations;
