@@ -47,8 +47,6 @@ public class UserEntity {
     private UserPreferencesEntity userPreferences;
     @OneToOne(cascade = CascadeType.ALL)
     private UserProfileEntity userProfile;
-    @OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
-    private List<Token> tokens;
     @CreatedDate
     private Date createdDate;
     @LastModifiedDate
