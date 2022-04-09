@@ -97,4 +97,30 @@ public class FollowService {
         }
     }
 
+    public List<UserDto> getFollowings(String token, Integer page, Integer size){
+        String userName = userService.getUserName(token);
+        List<String> followingIds = followerMongoService.getFollowingIds(userName, page, size);
+        List<UserDto> followingUsers = followingIds.stream()
+                .map(this::getUserBasicInfo)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        List<String> notifiers = notifierMongoService.getNotifiersOfUser(userName);
+
+        followingUsers.forEach(userDto -> {
+            userDto.setIsFollowing(true);
+        });
+        return followingUsers;
+    }
+
+
+
+    public List<UserDto> getFollowingsOfUser(String token, String userName, Integer page, Integer size){
+        UserDetail userDetail = userService.getUserByDetail(token);
+        UserDto userDto = userService.getUserBasicInfo(userDetail.getUserName());
+        List<String> followingIds = followerMongoService.getFollowingIds(userDto.getUserName(), page, size);
+        return getFollowersForUserName(userName, followingIds, page, size);
+
+    }
+
+
 }

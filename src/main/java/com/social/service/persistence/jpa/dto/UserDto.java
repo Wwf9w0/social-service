@@ -45,5 +45,7 @@ public class UserDto implements Serializable {
     private PostStatus status;
     @JsonProperty(value = "isBlocked")
     private Boolean isBlocked;
+    @JsonProperty(value = "isNotifier")
+    private Boolean isNotifier;
 
 }
