@@ -39,7 +39,7 @@
 		<dependency>
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
-			<version>8.1.1</version>
+			<version>6.8.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>org.elasticsearch.client</groupId>
 			<artifactId>elasticsearch-rest-high-level-client</artifactId>
-			<version>7.8.1</version>
+			<version>6.8.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

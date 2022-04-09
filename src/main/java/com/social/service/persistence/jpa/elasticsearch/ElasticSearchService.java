@@ -34,8 +34,8 @@ public class ElasticSearchService {
         try {
             Map<String, Object> jsonMap = new HashMap<>();
             jsonMap.put(field, value);
-            UpdateRequest request = new UpdateRequest(USER_INDEX, userName).doc(jsonMap);
-            client.update(request, RequestOptions.DEFAULT);
+          //  UpdateRequest request = new UpdateRequest(USER_INDEX, userName).doc(jsonMap);
+           // client.update(request, RequestOptions.DEFAULT);
         }catch (Exception e){
             log.error("An error occurred while updating");
         }
@@ -78,8 +78,8 @@ public class ElasticSearchService {
 
             Map<String, Object> jsonMap = new HashMap<>();
             jsonMap.put(FOLLOWER_COUNT_FIELD, followerCount);
-            UpdateRequest updateRequest = new UpdateRequest(USER_INDEX, followingUserName).doc(jsonMap);
-            client.update(updateRequest, RequestOptions.DEFAULT);
+          //  UpdateRequest updateRequest = new UpdateRequest(USER_INDEX, followingUserName).doc(jsonMap);
+           // client.update(updateRequest, RequestOptions.DEFAULT);
         }catch (Exception e){
             log.info(e.getMessage());
         }
