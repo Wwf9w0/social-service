@@ -2,7 +2,9 @@ package com.social.service.service;
 
 import com.social.service.client.UserServiceClient;
 import com.social.service.persistence.jpa.UserProfileEntity;
+import com.social.service.persistence.jpa.dto.UserDto;
 import com.social.service.persistence.jpa.mongo.service.UserMongoService;
+import com.social.service.persistence.jpa.response.UserDetail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +36,11 @@ public class UserService {
     }
 
     @Transactional
+    public UserDetail getUserByDetail(String token){
+        return socialUserService.getUserDetail(token);
+    }
+
+    @Transactional
     void incFollowerCount(String userName) {
         userMongoService.incFollowerCount(userName);
     }
@@ -56,5 +63,9 @@ public class UserService {
     @Transactional
     void decreaseFollowingCount(String userName){
         userMongoService.decreaseFollowingCount(userName);
+    }
+
+    public UserDto getUserBasicInfo(String userName){
+        return userMongoService.getUser(userName);
     }
 }

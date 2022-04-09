@@ -1,9 +1,13 @@
 package com.social.service.persistence.jpa.elasticsearch;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.social.service.persistence.jpa.mongo.document.UserDocument;
+import com.social.service.persistence.jpa.mongo.repository.UserRepository;
 import com.social.service.persistence.jpa.response.UserDetail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.client.RequestOptions;
@@ -13,12 +17,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class ElasticSearchService {
     private  final RestHighLevelClient client;
+    private final UserRepository userRepository;
     private final ObjectMapper objectMapper;
     private static final String USER_INDEX = "user";
     private static final String DOC_TYPE = "doc";
@@ -35,7 +41,7 @@ public class ElasticSearchService {
         }
     }
 
-    @Async
+   /* @Async
     public void createNewUserIndex(UserDetail userDetail){
         try {
             String externalNo = userDetail.getExternalNo();
@@ -54,8 +60,38 @@ public class ElasticSearchService {
             client.index(indexRequest, RequestOptions.DEFAULT);
             log.info("Created user index -> username : {}", userDetail.getUserName());
         }catch (Exception e){
-
+            log.error(e.getMessage());
         }
+    }
+    */
+    @Async
+    public void updateFollowerCount(String followingUserName, int updateCount){
+        try{
+            UserDocument userDocument = userRepository.findByUserName(followingUserName);
+            GetRequest getRequest = new GetRequest(USER_INDEX);
+            getRequest.id(userDocument.getId());
+            getRequest.fetchSourceContext();
+
+            GetResponse getResponse = client.get(getRequest, RequestOptions.DEFAULT);
+            Integer existedFollowerCount = (Integer) getResponse.getSource().get(FOLLOWER_COUNT_FIELD);
+            int followerCount = calculateFollowerCount(existedFollowerCount, updateCount);
+
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put(FOLLOWER_COUNT_FIELD, followerCount);
+            UpdateRequest updateRequest = new UpdateRequest(USER_INDEX, followingUserName).doc(jsonMap);
+            client.update(updateRequest, RequestOptions.DEFAULT);
+        }catch (Exception e){
+            log.info(e.getMessage());
+        }
+    }
+
+    private int calculateFollowerCount(Integer existedFollowerCount, int updateCount){
+        int follwerCount = updateCount;
+
+        if (Objects.nonNull(existedFollowerCount)){
+            follwerCount = existedFollowerCount + updateCount;
+        }
+        return follwerCount < 0 ? 0 : follwerCount;
     }
 
 
