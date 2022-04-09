@@ -16,4 +16,5 @@ public class ListPostsRequest {
 
     private PostStatus postStatus;
     private int page = 0;
+    private int size = 20;
 }

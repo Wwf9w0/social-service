@@ -23,31 +23,71 @@ public class UserMongoService {
         }
     }
 
-    public void incFollowerCount(String userName){
+    public void incFollowerCount(String userName) {
         UserDocument userDocument = userRepository.findByUserName(userName);
-        if (Objects.isNull(userDocument)){
+        if (Objects.isNull(userDocument)) {
             throw new RuntimeException();
         }
-        if (Objects.isNull(userDocument.getFollowerCount())){
+        if (Objects.isNull(userDocument.getFollowerCount())) {
             userDocument.setFollowerCount(1);
-        }else {
+        } else {
             userDocument.setFollowerCount(userDocument.getFollowerCount() + 1);
         }
         userRepository.save(userDocument);
     }
 
-    public void incFollowingCount(String userName){
+    public void incFollowingCount(String userName) {
         UserDocument userDocument = userRepository.findByUserName(userName);
 
-        if (Objects.isNull(userDocument)){
+        if (Objects.isNull(userDocument)) {
             throw new RuntimeException();
         }
-        if (Objects.isNull(userDocument.getFollowingCount())){
+        if (Objects.isNull(userDocument.getFollowingCount())) {
             userDocument.setFollowingCount(1);
-        }else {
+        } else {
             userDocument.setFollowingCount(userDocument.getFollowingCount() + 1);
         }
 
         userRepository.save(userDocument);
+    }
+
+    public void decreaseFollowerCount(String userName) {
+        UserDocument userDocument = userRepository.findByUserName(userName);
+        if (Objects.isNull(userDocument)) {
+            throw new RuntimeException();
+        }
+        if (Objects.isNull(userDocument.getFollowerCount()) || userDocument.getFollowerCount() <= 0) {
+            return;
+        }
+
+        userDocument.setFollowerCount(userDocument.getFollowerCount() - 1);
+        mongoOperations.save(userDocument);
+    }
+
+    public void decreaseFollowingCount(String userName) {
+        UserDocument userDocument = userRepository.findByUserName(userName);
+        if (Objects.isNull(userDocument)) {
+            throw new RuntimeException();
+        }
+        if (Objects.isNull(userDocument.getFollowingCount()) || userDocument.getFollowingCount() <= 0) {
+            return;
+        }
+
+        userDocument.setFollowingCount(userDocument.getFollowingCount() - 1);
+        mongoOperations.save(userDocument);
+    }
+
+    public void increaseFollowingCount(String userName) {
+        UserDocument userDocument = userRepository.findByUserName(userName);
+        if (Objects.isNull(userDocument)) {
+            throw new RuntimeException();
+        }
+        if (Objects.isNull(userDocument.getFollowerCount())) {
+            userDocument.setFollowerCount(1);
+        } else {
+            userDocument.setFollowerCount(userDocument.getFollowingCount() + 1);
+        }
+
+        mongoOperations.save(userDocument);
     }
 }

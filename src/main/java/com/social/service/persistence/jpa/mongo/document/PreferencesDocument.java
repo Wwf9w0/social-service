@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PreferencesDocument {
 
     private boolean profileOpen;
-    private boolean showNickName;
+    private boolean showUserName;
     private boolean postCommentAllowed;
     private boolean postViewAllowedForEveryone;
 }

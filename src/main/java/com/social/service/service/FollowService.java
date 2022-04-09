@@ -34,4 +34,15 @@ public class FollowService {
         }
     }
 
+    @Transactional
+    public void unFollow(String token, String followingUserName){
+        String userName = userService.getUserName(token);
+        long deleteCount = followerMongoService.deleteFollowing(userName, followingUserName);
+        if (deleteCount < 1){
+            return;
+        }
+
+
+    }
+
 }
