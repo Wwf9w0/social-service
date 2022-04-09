@@ -2,6 +2,7 @@ package com.social.service.service;
 
 import com.social.service.client.UserServiceClient;
 import com.social.service.persistence.jpa.UserProfileEntity;
+import com.social.service.persistence.jpa.mongo.service.FollowerMongoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +16,21 @@ import javax.transaction.Transactional;
 public class FollowService {
 
     private final UserServiceClient serviceClient;
+    private final UserService userService;
+    private FollowerMongoService followerMongoService;
+
     @Transactional
     public void follow(String token, String followUserName){
-        ResponseEntity<UserProfileEntity> userName= serviceClient.getUserDetail(token);
+        String userName= userService.getUserName(token);
 
         try {
+            userService.assertUserExisted(userName.toString());
+            followerMongoService.createFollower(userName, followUserName);
+            userService.incFollowerCount(userName);
+            userService.incFollowingCount(userName);
 
         }catch (Exception e){
-
+        log.warn(e.getMessage());
         }
     }
 

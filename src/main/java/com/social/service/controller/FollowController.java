@@ -1,5 +1,6 @@
 package com.social.service.controller;
 
+import com.social.service.service.FollowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
