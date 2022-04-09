@@ -42,6 +42,9 @@ public class FollowService {
             return;
         }
 
+        userService.decreaseFollowerCount(followingUserName);
+        userService.decreaseFollowingCount(userName);
+
 
     }
 

@@ -42,4 +42,19 @@ public class UserService {
     void incFollowingCount(String userName) {
         userMongoService.incFollowingCount(userName);
     }
+
+    @Transactional
+    void decreaseFollowerCount(String userName){
+        userMongoService.decreaseFollowerCount(userName);
+    }
+
+    @Transactional
+    void increaseFollowingCount(String userName){
+        userMongoService.increaseFollowingCount(userName);
+    }
+
+    @Transactional
+    void decreaseFollowingCount(String userName){
+        userMongoService.decreaseFollowingCount(userName);
+    }
 }
