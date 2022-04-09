@@ -1,4 +1,4 @@
-package com.social.service.persistence.jpa.mongo;
+package com.social.service.persistence.jpa.mongo.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,13 +16,13 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("Follower")
+@Document("UserLikedPosts")
 @CompoundIndexes({
-        @CompoundIndex(name = "follower_index", def = "{'follower' :1, 'following': 1}", unique = true)
+        @CompoundIndex(name = "Like_index", def = "{'userName' : 1, 'postId': 1}", unique = true)
 })
-public class FollowerEntity {
+public class UserLikedPostDocument {
 
-    private String follower;
-    private String following;
+    private String userName;
+    private String postId;
     private Date createdDate;
 }

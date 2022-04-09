@@ -13,7 +13,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 
 @RestController
-@RequiredArgsConstructor
+@RequiredArgsConstructor-
 @RequestMapping("/follow")
 public class FollowController {
 

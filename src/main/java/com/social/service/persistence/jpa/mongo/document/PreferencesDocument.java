@@ -1,4 +1,4 @@
-package com.social.service.persistence.jpa.mongo;
+package com.social.service.persistence.jpa.mongo.document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("Preferences")
-public class PreferencesEntity {
+public class PreferencesDocument {
 
     private boolean profileOpen;
     private boolean showNickName;
