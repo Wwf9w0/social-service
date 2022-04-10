@@ -8,10 +8,10 @@
 		<version>2.2.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.social.service</groupId>
-	<artifactId>social-service</artifactId>
+	<groupId>com.social.user.service</groupId>
+	<artifactId>social-user-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>social-service</name>
+	<name>social-user-service</name>
 	<description>Social project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
