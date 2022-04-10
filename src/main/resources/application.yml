@@ -1,17 +1,12 @@
 spring:
-  h2:
-    console:
-      enabled: true
-
-  datasource:
-    url: jdbc:h2:./users;AUTO_SERVER=TRUE
-    username: sa
+ data:
+   mongodb:
+     authentication-database: admin
+     database: social
+     username: root
+     password: password
+     auto-index-creation: true
     #generate-unique-name: false
-  jpa:
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.H2Dialect
-
 server:
   port: 8083
 

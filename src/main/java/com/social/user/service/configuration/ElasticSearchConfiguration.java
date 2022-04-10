@@ -1,3 +1,4 @@
+/*
 package com.social.user.service.configuration;
 
 import com.social.user.service.configuration.properties.ElasticSearchProperties;
@@ -35,3 +36,4 @@ public class ElasticSearchConfiguration {
         return new RestHighLevelClient(builder);
     }
 }
+*/

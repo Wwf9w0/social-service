@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -15,7 +14,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class PostSearchRequest {
 
-    @NotNull(message ="hashTag connot be null " )
     private String hashTag;
     private Integer page = 0;
     private Integer size = 10;
