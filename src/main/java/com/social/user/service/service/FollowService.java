@@ -29,7 +29,7 @@ public class FollowService {
         String userName = userService.getUserName(token);
 
         try {
-            userService.assertUserExisted(userName.toString());
+            userService.assertUserExisted(userName);
             followerMongoService.createFollower(userName, followUserName);
             userService.incFollowerCount(userName);
             userService.incFollowingCount(userName);
@@ -55,7 +55,7 @@ public class FollowService {
 
     }
 
-    public List<UserDto> getFollowersOfUser(String token, String userName, Integer page, Integer size){
+    public List<UserDto> getFollowersOfUser(String token, String userName, Integer page, Integer size) {
         UserDetail userDetail = userService.getUserByDetail(token);
         UserDto userDto = userService.getUserBasicInfo(userDetail.getUserName());
         List<String> followingIds = followerMongoService.getFollowingIds(userDto.getUserName(), page, size);
@@ -63,24 +63,23 @@ public class FollowService {
 
     }
 
-    private List<UserDto> getFollowersForUserName(String userName, List<String> followinmgIds, Integer page, Integer size){
+    private List<UserDto> getFollowersForUserName(String userName, List<String> followinmgIds, Integer page, Integer size) {
         List<String> userFollowings = followerMongoService.getFollowingIds(userName, page, size);
-        return constructUserDtoListFollowings(userName, userFollowings,followinmgIds);
+        return constructUserDtoListFollowings(userName, userFollowings, followinmgIds);
     }
 
-    private List<UserDto> constructUserDtoListFollowings(String userName, List<String> users, List<String> followings){
-        List<UserDto> collect = users.stream()
+    private List<UserDto> constructUserDtoListFollowings(String userName, List<String> users, List<String> followings) {
+
+        return users.stream()
                 .map(this::getUserBasicInfo)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-
-        return collect;
     }
 
-    private UserDto getUserBasicInfo(String userName){
+    private UserDto getUserBasicInfo(String userName) {
         try {
             return userService.getUserBasicInfo(userName);
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -93,7 +92,7 @@ public class FollowService {
         }
     }
 
-    public List<UserDto> getFollowings(String token, Integer page, Integer size){
+    public List<UserDto> getFollowings(String token, Integer page, Integer size) {
         String userName = userService.getUserName(token);
         List<String> followingIds = followerMongoService.getFollowingIds(userName, page, size);
         List<UserDto> followingUsers = followingIds.stream()
@@ -102,21 +101,15 @@ public class FollowService {
                 .collect(Collectors.toList());
         List<String> notifiers = notifierMongoService.getNotifiersOfUser(userName);
 
-        followingUsers.forEach(userDto -> {
-            userDto.setIsFollowing(true);
-        });
+        followingUsers.forEach(userDto -> userDto.setIsFollowing(true));
         return followingUsers;
     }
 
-
-
-    public List<UserDto> getFollowingsOfUser(String token, String userName, Integer page, Integer size){
+    public List<UserDto> getFollowingsOfUser(String token, String userName, Integer page, Integer size) {
         UserDetail userDetail = userService.getUserByDetail(token);
         UserDto userDto = userService.getUserBasicInfo(userDetail.getUserName());
         List<String> followingIds = followerMongoService.getFollowingIds(userDto.getUserName(), page, size);
         return getFollowersForUserName(userName, followingIds, page, size);
 
     }
-
-
 }

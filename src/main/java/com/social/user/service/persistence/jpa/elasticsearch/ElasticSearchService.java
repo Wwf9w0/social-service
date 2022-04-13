@@ -88,7 +88,7 @@ public class ElasticSearchService {
         if (Objects.nonNull(existedFollowerCount)){
             follwerCount = existedFollowerCount + updateCount;
         }
-        return follwerCount < 0 ? 0 : follwerCount;
+        return Math.max(follwerCount, 0);
     }
 
 
