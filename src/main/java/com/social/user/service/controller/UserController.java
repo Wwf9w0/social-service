@@ -25,3 +25,72 @@ public class UserController {
         return ResponseEntity.ok(userService.getUser(token));
     }
 }
+
+
+
+//TODO Post-Service
+
+/**
+PostCommentController
+-getcomments id
+-postComment
+-postAnswer
+-deletecomment
+-deleteanswer
+-complaincomment
+-
+*
+* */
+
+
+
+/**
+PostController
+create-delete-update-getting
+* */
+
+
+
+/**
+* PostLikeController
+* id like
+* id dislike
+* */
+
+
+/**Post Search Controller
+ * List Post of hashtag
+ * List post of users
+ * list following users posts
+ */
+
+
+/**
+ *
+ * PostDetailController
+ * getPost
+ * getPostDetail
+ * getFollowingUserPosts
+ * getTopics
+ * */
+
+
+
+/**Public Post Controller
+ * get Most posts
+ * get reqular user posts
+ * get topic posts
+ *
+ * */
+
+
+/**UserProfileController
+ * getProfilePosts
+ * getUserPosts
+ * pin posts
+ * unpin posts
+ * delete posts
+ * disable post comments
+ * enable post comments
+ *
+ * */

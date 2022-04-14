@@ -19,6 +19,7 @@ public class LoginController {
 
     @PostMapping()
     public ResponseEntity<Void> register(@RequestHeader(AUTHORIZATION) String token){
+        //TODO .... block
         loginService.login(token);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -1,3 +1,4 @@
+/*
 package com.social.user.service.persistence.jpa.elasticsearch;
 
 import lombok.AllArgsConstructor;
@@ -18,3 +19,4 @@ public class ElasticPost {
     private Long date;
     private Integer postStatus;
 }
+*/

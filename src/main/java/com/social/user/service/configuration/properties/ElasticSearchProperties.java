@@ -1,3 +1,4 @@
+/*
 package com.social.user.service.configuration.properties;
 
 import lombok.Getter;
@@ -17,3 +18,4 @@ public class ElasticSearchProperties {
     private String username;
     private String password;
 }
+*/

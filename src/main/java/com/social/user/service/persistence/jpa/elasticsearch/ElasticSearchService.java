@@ -1,3 +1,4 @@
+/*
 package com.social.user.service.persistence.jpa.elasticsearch;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,7 +39,8 @@ public class ElasticSearchService {
         }
     }
 
-   /* @Async
+   */
+/* @Async
     public void createNewUserIndex(UserDetail userDetail){
         try {
             String externalNo = userDetail.getExternalNo();
@@ -60,7 +62,8 @@ public class ElasticSearchService {
             log.error(e.getMessage());
         }
     }
-    */
+    *//*
+
     @Async
     public void updateFollowerCount(String followingUserName, int updateCount){
         try{
@@ -93,3 +96,4 @@ public class ElasticSearchService {
 
 
 }
+*/

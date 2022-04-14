@@ -1,3 +1,4 @@
+/*
 package com.social.user.service.persistence.jpa.elasticsearch;
 
 import lombok.AllArgsConstructor;
@@ -20,3 +21,4 @@ public class ElasticUser {
     private Integer followerCount;
     private String profilePhoto;
 }
+*/

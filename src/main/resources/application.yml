@@ -2,7 +2,7 @@ spring:
  data:
    mongodb:
      authentication-database: admin
-     database: social
+     database: social_user
      username: root
      password: password
      auto-index-creation: true
@@ -11,6 +11,6 @@ server:
   port: 8083
 
 user-service:
-  url: http://localhost:8082
+  url: http://user-service:8082
 
 
