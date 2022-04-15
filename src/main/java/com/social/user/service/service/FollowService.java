@@ -1,7 +1,6 @@
 package com.social.user.service.service;
 
 import com.social.user.service.persistence.jpa.dto.UserDto;
-import com.social.user.service.persistence.jpa.elasticsearch.ElasticSearchService;
 import com.social.user.service.persistence.jpa.mongo.service.FollowerMongoService;
 import com.social.user.service.persistence.jpa.mongo.service.NotifierMongoService;
 import com.social.user.service.persistence.jpa.response.UserDetail;
@@ -21,7 +20,6 @@ public class FollowService {
 
     private final UserService userService;
     private final FollowerMongoService followerMongoService;
-    private final ElasticSearchService elasticSearchService;
     private final NotifierMongoService notifierMongoService;
 
     @Transactional
@@ -49,7 +47,6 @@ public class FollowService {
 
         userService.decreaseFollowerCount(followingUserName);
         userService.decreaseFollowingCount(userName);
-        elasticSearchService.updateFollowerCount(followingUserName, -1);
 
         removeNofilter(userName, followingUserName);
 

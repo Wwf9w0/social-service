@@ -1,11 +1,9 @@
 spring:
  data:
    mongodb:
-     authentication-database: admin
-     database: social_user
+     uri: mongodb://localhost:27017/social-user
      username: root
      password: password
-     auto-index-creation: true
     #generate-unique-name: false
 server:
   port: 8083
