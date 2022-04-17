@@ -69,9 +69,3 @@ public class UserService {
         return userMongoService.getUser(userName);
     }
 }
-
-//1-mongoya yaz
-//2- elastichten güncelle
-//3-redisten kaldır
-//4- es den cevap dön
-//5-response nesnesine dönüştür
