@@ -1,6 +1,7 @@
 package com.social.user.service.persistence.jpa;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +23,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Table(name = "user_preferences")
+@Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
