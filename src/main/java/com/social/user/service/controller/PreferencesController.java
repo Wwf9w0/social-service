@@ -23,7 +23,7 @@ public class PreferencesController {
         return ResponseEntity.ok(userPreferencesService.updatePreferences(request));
     }
 
-    //TODO update preferences
+    //TODO update preferences ++
     //TODO get Preferences
 
 }
