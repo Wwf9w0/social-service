@@ -30,7 +30,6 @@ public class UserDocument {
     private Integer followingCount;
     @Indexed
     private Integer followerCount;
-
     private PreferencesDocument preferences;
     private boolean isWriter;
     private boolean isSuperUser;

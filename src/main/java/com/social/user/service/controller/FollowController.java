@@ -69,5 +69,4 @@ public class FollowController {
                                                            @RequestParam(name = "size" , defaultValue = "10") Integer size){
         return ResponseEntity.ok(followService.getFollowingsOfUser(token, userName, page, size));
     }
-
 }

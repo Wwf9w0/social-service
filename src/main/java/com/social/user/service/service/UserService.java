@@ -36,7 +36,7 @@ public class UserService {
     }
 
     @Transactional
-    public UserDetail getUserByDetail(String token){
+    public UserDetail getUserByDetail(String token) {
         return socialUserService.getUserDetail(token);
     }
 
@@ -51,21 +51,21 @@ public class UserService {
     }
 
     @Transactional
-    void decreaseFollowerCount(String userName){
+    void decreaseFollowerCount(String userName) {
         userMongoService.decreaseFollowerCount(userName);
     }
 
     @Transactional
-    void increaseFollowingCount(String userName){
+    void increaseFollowingCount(String userName) {
         userMongoService.increaseFollowingCount(userName);
     }
 
     @Transactional
-    void decreaseFollowingCount(String userName){
+    void decreaseFollowingCount(String userName) {
         userMongoService.decreaseFollowingCount(userName);
     }
 
-    public UserDto getUserBasicInfo(String userName){
+    public UserDto getUserBasicInfo(String userName) {
         return userMongoService.getUser(userName);
     }
 }

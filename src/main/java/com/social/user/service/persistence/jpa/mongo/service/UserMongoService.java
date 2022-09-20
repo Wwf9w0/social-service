@@ -28,9 +28,8 @@ public class UserMongoService {
         }
 
         UserDto userDto = UserConverter.toUserDto(userDocument);
-        String profilePhoto = StringUtils.isEmpty(userDto.getProfilePhoto())
-                //TODO pp
-                ? null : null;
+        //TODO pp
+        String profilePhoto = null;
         userDto.setProfilePhoto(profilePhoto);
         return userDto;
     }
