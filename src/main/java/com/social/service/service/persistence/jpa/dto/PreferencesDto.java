@@ -20,6 +20,4 @@ public class PreferencesDto {
     private boolean postCommentAllowed;
     @JsonProperty(value = "sun")
     private boolean showUserName;
-
-
 }
