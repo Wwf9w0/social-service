@@ -2,6 +2,7 @@ package com.social.service.service.persistence.jpa.request;
 
 import com.social.service.service.persistence.jpa.mongo.document.CommentDocument;
 import com.social.service.service.persistence.jpa.mongo.document.LikeDocument;
+import com.social.service.service.persistence.jpa.mongo.enums.PostStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class CreatePostRequest {
 
     private String userName;
     private LocalDateTime shareDate;
-    private Integer status;
+    private PostStatus status;
     private Boolean pinned;
     private Boolean commentable;
     private String description;

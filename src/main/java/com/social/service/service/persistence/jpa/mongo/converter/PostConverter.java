@@ -11,7 +11,7 @@ public class PostConverter {
         return PostDocument.builder()
                 .userName(createPostRequest.getUserName())
                 .shareDate(LocalDateTime.now())
-                .status(createPostRequest.getStatus())
+                .status(createPostRequest.getStatus().getStatus())
                 .pinned(createPostRequest.getPinned())
                 .commentable(createPostRequest.getCommentable())
                 .description(createPostRequest.getDescription())

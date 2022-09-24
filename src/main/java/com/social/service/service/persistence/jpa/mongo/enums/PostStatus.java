@@ -9,7 +9,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public enum PostStatus {
 
-    SHARE(1),
+    ACTIVE(1),
     CANCELLED(2),
     DELETED(3);
 
