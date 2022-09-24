@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -23,7 +24,7 @@ public class PostDocument {
     private String userName;
     private List<LikeDocument> likes;
     private List<CommentDocument> comments;
-    private Long shareDate;
+    private LocalDateTime shareDate;
     private Integer status;
     private Boolean pinned;
     private Boolean commentable;

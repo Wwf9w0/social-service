@@ -20,6 +20,5 @@ public class CommentDocument {
     private String id;
     private String userName;
     private String comment;
-    private List<CommentAnswerDocument> answers;
     private Long createdDate;
 }
