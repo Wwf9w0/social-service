@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Id;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,5 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("Like")
 public class LikeDocument {
 
+    @Id
+    private String id;
     private String userName;
 }

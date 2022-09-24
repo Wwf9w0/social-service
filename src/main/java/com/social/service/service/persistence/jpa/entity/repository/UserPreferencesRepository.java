@@ -1,4 +1,4 @@
-package com.social.service.service.persistence.jpa.repository;
+package com.social.service.service.persistence.jpa.entity.repository;
 
 import com.social.service.service.persistence.jpa.entity.UserPreferencesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,8 +1,7 @@
 package com.social.service.service.persistence.jpa.entity;
 
 import com.social.service.service.converter.UserPreferencesConverter;
-import com.social.service.service.persistence.jpa.entity.UserPreferencesEntity;
-import com.social.service.service.persistence.jpa.repository.UserPreferencesRepository;
+import com.social.service.service.persistence.jpa.entity.repository.UserPreferencesRepository;
 import com.social.service.service.persistence.jpa.request.PreferencesUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
