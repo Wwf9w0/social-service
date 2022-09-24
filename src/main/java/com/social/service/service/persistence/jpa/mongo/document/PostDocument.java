@@ -26,6 +26,7 @@ public class PostDocument {
     private List<CommentDocument> comments;
     private LocalDateTime shareDate;
     private Integer status;
+    private Integer followerCount;
     private Boolean pinned;
     private Boolean commentable;
     private String description;
