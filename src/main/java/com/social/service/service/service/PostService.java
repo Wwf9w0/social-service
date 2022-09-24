@@ -1,6 +1,7 @@
 package com.social.service.service.service;
 
 import com.social.service.service.persistence.jpa.mongo.document.LikeDocument;
+import com.social.service.service.persistence.jpa.mongo.document.LikedPostDocument;
 import com.social.service.service.persistence.jpa.mongo.document.PostDocument;
 import com.social.service.service.persistence.jpa.mongo.service.PostMongoService;
 import com.social.service.service.persistence.jpa.request.CreatePostRequest;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class PostService {
 
     private final PostMongoService postMongoService;
+    private final LikedPostService likedPostService;
 
     public void savePost(CreatePostRequest createPostRequest) {
         postMongoService.savePost(createPostRequest);
@@ -34,11 +37,16 @@ public class PostService {
     public void insertLikePost(String userName, String postId) {
         Optional<PostDocument> post = getPostById(postId);
         LikeDocument likeDocument = LikeDocument.builder()
-                        .userName(userName)
+                .userName(userName)
                 .build();
         List<LikeDocument> likes = new ArrayList<>();
         likes.add(likeDocument);
         post.get().setLikes(likes);
+        LikedPostDocument likedPost = LikedPostDocument.builder()
+                .postId(postId)
+                .userName(userName)
+                .createdDate(LocalDateTime.now()).build();
+        likedPostService.save(likedPost);
         saveDocPost(post.get());
     }
 
