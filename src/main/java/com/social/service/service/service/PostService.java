@@ -99,5 +99,4 @@ public class PostService {
     private boolean shouldPostFilterFollower(PostFilterType postFilterType) {
         return Objects.equals(postFilterType, PostFilterType.FOLLOWER_COUNT);
     }
-
 }

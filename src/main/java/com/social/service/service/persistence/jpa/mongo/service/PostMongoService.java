@@ -1,5 +1,6 @@
 package com.social.service.service.persistence.jpa.mongo.service;
 
+import com.social.service.service.persistence.jpa.dto.PostDto;
 import com.social.service.service.persistence.jpa.mongo.converter.PostConverter;
 import com.social.service.service.persistence.jpa.mongo.document.PostDocument;
 import com.social.service.service.persistence.jpa.mongo.enums.PostStatus;
