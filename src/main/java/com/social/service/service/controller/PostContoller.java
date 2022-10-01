@@ -22,7 +22,4 @@ public class PostContoller {
         postService.savePost(createPostRequest);
         return ResponseEntity.ok(HttpStatus.OK);
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<>
 }
