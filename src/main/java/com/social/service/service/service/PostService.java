@@ -45,7 +45,8 @@ public class PostService {
         List<LikeDocument> likes = new ArrayList<>();
         likes.add(likeDocument);
         post.get().setLikes(likes);
-        LikedPostDocument likedPost = LikedPostDocument.builder().postId(postId).userName(userName).createdDate(LocalDateTime.now()).build();
+        LikedPostDocument likedPost = LikedPostDocument.builder().postId(postId).userName(userName)
+                .createdDate(LocalDateTime.now()).build();
         likedPostService.save(likedPost);
         saveDocPost(post.get());
     }
@@ -73,11 +74,13 @@ public class PostService {
     private List<PostDocument> filterPost(List<PostDocument> postDocuments, PostFilterType postFilterType) {
 
         if (shouldPostFilterFollower(postFilterType)) {
-            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getFollowerCount)).collect(Collectors.toList());
+            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getFollowerCount))
+                    .collect(Collectors.toList());
         }
 
         if (shouldPostFilterDate(postFilterType)) {
-            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getShareDate).reversed()).collect(Collectors.toList());
+            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getShareDate).reversed())
+                    .collect(Collectors.toList());
         }
         return postDocuments;
     }
