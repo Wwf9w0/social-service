@@ -6,7 +6,6 @@ import com.social.service.service.persistence.jpa.mongo.document.PostDocument;
 import com.social.service.service.persistence.jpa.mongo.enums.PostFilterType;
 import com.social.service.service.persistence.jpa.mongo.service.PostMongoService;
 import com.social.service.service.persistence.jpa.request.CreatePostRequest;
-import javafx.geometry.Pos;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -42,16 +41,11 @@ public class PostService {
 
     public void insertLikePost(String userName, String postId) {
         Optional<PostDocument> post = getPostById(postId);
-        LikeDocument likeDocument = LikeDocument.builder()
-                .userName(userName)
-                .build();
+        LikeDocument likeDocument = LikeDocument.builder().userName(userName).build();
         List<LikeDocument> likes = new ArrayList<>();
         likes.add(likeDocument);
         post.get().setLikes(likes);
-        LikedPostDocument likedPost = LikedPostDocument.builder()
-                .postId(postId)
-                .userName(userName)
-                .createdDate(LocalDateTime.now()).build();
+        LikedPostDocument likedPost = LikedPostDocument.builder().postId(postId).userName(userName).createdDate(LocalDateTime.now()).build();
         likedPostService.save(likedPost);
         saveDocPost(post.get());
     }
@@ -79,15 +73,11 @@ public class PostService {
     private List<PostDocument> filterPost(List<PostDocument> postDocuments, PostFilterType postFilterType) {
 
         if (shouldPostFilterFollower(postFilterType)) {
-            return postDocuments.stream()
-                    .sorted(Comparator.comparing(PostDocument::getFollowerCount))
-                    .collect(Collectors.toList());
+            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getFollowerCount)).collect(Collectors.toList());
         }
 
         if (shouldPostFilterDate(postFilterType)) {
-            return postDocuments.stream()
-                    .sorted(Comparator.comparing(PostDocument::getShareDate).reversed())
-                    .collect(Collectors.toList());
+            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getShareDate).reversed()).collect(Collectors.toList());
         }
         return postDocuments;
     }
