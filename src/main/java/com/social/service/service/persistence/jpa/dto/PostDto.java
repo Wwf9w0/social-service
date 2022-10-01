@@ -1,10 +1,13 @@
 package com.social.service.service.persistence.jpa.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.social.service.service.persistence.jpa.mongo.document.CommentDocument;
+import com.social.service.service.persistence.jpa.mongo.document.LikeDocument;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -19,4 +22,6 @@ public class PostDto {
     private LocalDateTime shareDate;
     private Boolean commentable;
     private String description;
+    private List<LikeDto> likes;
+    private List<CommentDto> comments;
 }

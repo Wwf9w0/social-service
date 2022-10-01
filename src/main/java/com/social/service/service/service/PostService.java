@@ -74,13 +74,11 @@ public class PostService {
     private List<PostDocument> filterPost(List<PostDocument> postDocuments, PostFilterType postFilterType) {
 
         if (shouldPostFilterFollower(postFilterType)) {
-            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getFollowerCount))
-                    .collect(Collectors.toList());
+            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getFollowerCount)).collect(Collectors.toList());
         }
 
         if (shouldPostFilterDate(postFilterType)) {
-            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getShareDate).reversed())
-                    .collect(Collectors.toList());
+            return postDocuments.stream().sorted(Comparator.comparing(PostDocument::getShareDate).reversed()).collect(Collectors.toList());
         }
         return postDocuments;
     }

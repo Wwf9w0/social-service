@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Id;
 import java.util.List;
 
 @Getter
@@ -17,6 +18,7 @@ import java.util.List;
 @Document("Comment")
 public class CommentDocument {
 
+    @Id
     private String id;
     private String userName;
     private String comment;
