@@ -8,4 +8,5 @@ import java.util.List;
 public interface LikedPostRepository extends MongoRepository<LikedPostDocument, String> {
 
     List<LikedPostDocument> findByUserName(String userName);
+    List<LikedPostDocument> findByIdIn(List<String> ids);
 }

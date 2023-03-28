@@ -20,7 +20,12 @@ public class LikedPostMongoService {
         likedPostRepository.save(likedPostDocument);
     }
 
-    public LikedPostResponse getLikedPost(String userName){
+    public List<LikedPostDocument> getLikedPosts(String userName){
+        LikedPostResponse response = getLikedPostIds(userName);
+        return likedPostRepository.findByIdIn(response.getPostId());
+    }
+
+    private LikedPostResponse getLikedPostIds(String userName){
         List<LikedPostDocument> likedPostDocuments = likedPostRepository.findByUserName(userName);
         List<String> postId = new ArrayList<>();
         likedPostDocuments.forEach(likedPostDocument -> {

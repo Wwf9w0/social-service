@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class LikedPostService {
         likedPostMongoService.save(likedPostDocument);
     }
 
-    public LikedPostResponse getLikedPost(String userName) {
-        return likedPostMongoService.getLikedPost(userName);
+    public List<LikedPostDocument> getLikedPost(String userName) {
+        return likedPostMongoService.getLikedPosts(userName);
     }
 }
