@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostContoller {
     private final PostService postService;
 
-    @PostMapping("/crete")
+    @PostMapping("/home")
     public ResponseEntity<HttpStatus> create(@RequestBody CreatePostRequest createPostRequest){
         postService.savePost(createPostRequest);
         return ResponseEntity.ok(HttpStatus.OK);

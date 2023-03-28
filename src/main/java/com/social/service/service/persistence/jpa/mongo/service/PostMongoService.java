@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,6 +32,14 @@ public class PostMongoService {
         postRepository.save(postDocument);
     }
 
+    public void updatePost(String id, CreatePostRequest request){
+        PostDocument post = getPostById(id).orElseThrow(RuntimeException::new);
+        //TODO  need postUpdateRequest
+        if (post.getStatus().equals(PostStatus.ACTIVE.getStatus())){
+            post.setDescription(request.getDescription());
+        }
+        postRepository.save(post);
+    }
 
     public Optional<PostDocument> getPostById(String id) {
         return postRepository.findById(id);
@@ -51,6 +60,11 @@ public class PostMongoService {
         return FollowingPostListResponse.builder()
                 .followingPostList(postList)
                 .build();
+    }
+
+    public void deletePost(String id){
+        Optional<PostDocument> post = getPostById(id);
+        post.ifPresent(postRepository::delete);
     }
 
     public List<PostDocument> getFollowingUsersAllPosts(String userName) {
